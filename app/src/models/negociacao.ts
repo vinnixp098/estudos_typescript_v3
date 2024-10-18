@@ -1,4 +1,6 @@
-export class Negociacao {
+import { Comparavel } from "../interfaces/comparavel";
+
+export class Negociacao implements Comparavel<Negociacao> {
     constructor(
         private _data: Date, 
         public readonly quantidade: number, 
@@ -20,5 +22,11 @@ export class Negociacao {
         const quantidade = parseInt(quantidadeString);
         const valor = parseFloat(valorString);
         return new Negociacao(date, quantidade, valor);
+    }
+
+    public heIgual(negociacao: Negociacao):  boolean {
+        return this.data.getTime() === negociacao.data.getTime() &&
+        this.data.getMonth()  === negociacao.data.getMonth() &&
+        this.data.getFullYear()  === negociacao.data.getFullYear()
     }
 }
